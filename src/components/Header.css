@@ -1,0 +1,23 @@
+a {
+    text-decoration: none;
+    color: inherit;
+}
+.header {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    height: 60px;
+    align-items: center;
+    justify-content: space-between;
+}
+.header h1 {
+    letter-spacing: 6px;
+}
+.header ul {
+    display: flex;
+}
+.header ul li {
+    padding: 16px;
+}
