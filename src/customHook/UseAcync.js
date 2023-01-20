@@ -36,7 +36,7 @@ import { useReducer } from 'react';
         }
     }
 
-    const UseAcync = (callback, deps=[]) => {
+    const UseAcync = (callback, deps=[], id) => {
         console.log(callback)
         const [state, dispatch] = useReducer(reducer, initialState)
         //데이터 요청 함수
@@ -47,7 +47,7 @@ import { useReducer } from 'react';
             })
             //에러가 발생할 확률이 높은 코드작성시 에러핸들링
             try {
-                const data = await callback();
+                const data = await callback(id);
                 dispatch({
                     type: "SUCCESS",
                     data //data: data를 줄임

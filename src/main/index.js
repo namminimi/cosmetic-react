@@ -27,11 +27,11 @@ const MainPage = () => {
             <div className='product'>
                 <h2>신상품</h2>
                 <ul>
-                    {data.map(pro=>
-                        <ProductList 
-                        p_id={pro.id}
-                        p_name={pro.name} 
-                        p_price={pro.price}
+                    {data.map(pro=> //배열을 바로 받아서 products뺐음
+                        <ProductList key={pro.p_id} 
+                        p_id={pro.p_id}
+                        p_name={pro.p_name} 
+                        p_price={pro.p_price}
                         p_img = {pro.p_img}
                         />)}
                 </ul>
