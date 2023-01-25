@@ -27,6 +27,26 @@ const UploadPage = () => {
             p_quantity: ""
         })
     }
+    const onChangeImage = (e) => {
+        const {name} = e.target;
+        //폼테크 생성
+        const imageFormData = new FormData();
+        //폼테크에 속성 추가하기
+        imageFormData.append(name, e.target.files[0])
+        //이미지 업로드요청(서버로 이미지파일 업로드 요청)
+        axios.post("http://localhost:8080/upload", imageFormData, {
+            Headers: {'content-type':'multipart/form-data'}
+        }).then(res=>{
+            setFormData({
+                ...formData,
+                p_img: res.data.imageUrl
+            })
+        })
+        .catch(e=>{
+            console.log(e)
+        })
+    }
+
     const onSubmit = (e) => {
         //form에 연결된 이벤트를 제거
         e.preventDefault();
@@ -68,8 +88,9 @@ const UploadPage = () => {
                             상품이미지
                         </td>
                         <td>
-                            <input type="text" name="p_img"
-                            value={formData.p_img} onChange={onChange}/>
+                            <input type="file" name="file"
+                            onChange={onChangeImage}/>
+                            {formData.p_img && <img src={`http://localhost:8080/upload/${formData.p_img}`} width="300" height="300" alt=''/>}
                         </td>
                     </tr>
                     <tr>
