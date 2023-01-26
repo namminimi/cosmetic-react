@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../config/apiurl';
 import "./index.css"
 const UploadPage = () => {
     const navigate = useNavigate()
@@ -34,7 +35,7 @@ const UploadPage = () => {
         //폼테크에 속성 추가하기
         imageFormData.append(name, e.target.files[0])
         //이미지 업로드요청(서버로 이미지파일 업로드 요청)
-        axios.post("http://localhost:8080/upload", imageFormData, {
+        axios.post(`${API_URL}/upload`, imageFormData, {
             Headers: {'content-type':'multipart/form-data'}
         }).then(res=>{
             setFormData({
@@ -59,7 +60,7 @@ const UploadPage = () => {
             }
     }
     function insertProduct() {
-        axios.post("http://localhost:8080/addProduct", formData)//formDate 같이 전송
+        axios.post(`${API_URL}/addProduct`, formData)//formDate 같이 전송
         .then(res => {
             console.log(res);
             navigate('/')
@@ -90,7 +91,7 @@ const UploadPage = () => {
                         <td>
                             <input type="file" name="file"
                             onChange={onChangeImage}/>
-                            {formData.p_img && <img src={`http://localhost:8080/upload/${formData.p_img}`} width="300" height="300" alt=''/>}
+                            {formData.p_img && <img src={`${API_URL}/upload/${formData.p_img}`} width="300" height="300" alt=''/>}
                         </td>
                     </tr>
                     <tr>

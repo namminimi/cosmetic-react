@@ -4,9 +4,10 @@ import React from 'react';
 import ProductList from '../components/ProductList';
 import './index.css';
 import UseAcync from '../customHook/UseAcync';
+import { API_URL } from '../config/apiurl';
 
 async function productFetch(){
-    const response = await axios.get('http://localhost:8080/products');
+    const response = await axios.get(`${API_URL}/products`);
     return response.data
 }
 

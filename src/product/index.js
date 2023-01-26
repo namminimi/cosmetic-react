@@ -1,11 +1,12 @@
 import axios from 'axios';
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { API_URL } from '../config/apiurl';
 import UseAcync from '../customHook/UseAcync';
 import "./index.css"
 
 const detailFetch = async (id) => {
-    const response = await axios.get(`http://localhost:8080/products/${id}`);
+    const response = await axios.get(`${API_URL}/products/${id}`);
     return response.data;
 }
 const ProductPage = () => {
@@ -16,7 +17,7 @@ const ProductPage = () => {
     const {loading, data, error} = state
     //삭제하기
     const onDelete = () => {
-        axios.delete(`http://localhost:8080/delProduct/${p_id}`)
+        axios.delete(`${API_URL}/delProduct/${p_id}`)
         .then(result=>{
             console.log("삭제되었습니다.");
             navigate("/")
@@ -33,7 +34,7 @@ const ProductPage = () => {
         <div className='productDetail'>
             <h2>{data[0].p_name}</h2>
             <div className='productImg'>
-                <img src={`http://localhost:8080/upload/${data[0].p_img}`} width="600px" alt=""/>
+                <img src={`${API_URL}/upload/${data[0].p_img}`} width="600px" alt=""/>
             </div>
             <div>
                 <p>{data[0].p_name}</p>

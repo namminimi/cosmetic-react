@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React from 'react';
+import { API_URL } from '../config/apiurl';
 import UseAcync from '../customHook/UseAcync';
 
 async function getProducts(){
     const response = await axios.get(
-        "http://localhost:8080/products"
+        `${API_URL}/products`
     )
     console.log(response.data)
     return response.data;
